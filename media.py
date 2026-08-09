@@ -1,8 +1,8 @@
 # Improved Program #
 ####################
-class Media:
-    """Represents a Movie or Show."""
 
+#Represents a Movie or Show.
+class Media:
     ALLOWED_TYPES = ["Movie", "Show"]
 
     ALLOWED_GENRES = [
@@ -47,8 +47,9 @@ class Media:
         self.genre = genre
         self.rating = rating
 
+#Returns the object as a tuple for SQLite insertion
     def to_tuple(self):
-        """Returns the object as a tuple for SQLite insertion."""
+        
         return (
             self.media_type,
             self.name,
