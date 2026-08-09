@@ -5,24 +5,21 @@ from media import Media
 import database
 
 
-# ---------------------------------------------------
+
 # Create database if it doesn't already exist
-# ---------------------------------------------------
 database.create_database()
 
 
-# ---------------------------------------------------
+
 # Window
-# ---------------------------------------------------
 root = tk.Tk()
 root.title("Movie & Show Tracker")
 root.geometry("900x600")
 root.resizable(False, False)
 
 
-# ---------------------------------------------------
+
 # Variables
-# ---------------------------------------------------
 selected_id = None
 
 type_var = tk.StringVar(value="Movie")
@@ -31,9 +28,8 @@ rating_var = tk.IntVar(value=5)
 search_var = tk.StringVar()
 
 
-# ---------------------------------------------------
+
 # Functions
-# ---------------------------------------------------
 def clear_fields():
     """Reset all input fields."""
     global selected_id
@@ -176,9 +172,8 @@ def on_select(event):
 search_var.trace_add("write", search_media)
 
 
-# ---------------------------------------------------
+
 # Form Frame
-# ---------------------------------------------------
 form = tk.Frame(root, padx=10, pady=10)
 form.pack(fill="x")
 
@@ -244,9 +239,8 @@ rating_box = ttk.Combobox(
 rating_box.grid(row=1, column=3, padx=5)
 
 
-# ---------------------------------------------------
+
 # Buttons
-# ---------------------------------------------------
 button_frame = tk.Frame(root)
 button_frame.pack(pady=10)
 
@@ -279,9 +273,8 @@ tk.Button(
 ).grid(row=0, column=3, padx=5)
 
 
-# ---------------------------------------------------
+
 # Search
-# ---------------------------------------------------
 search_frame = tk.Frame(root)
 search_frame.pack(fill="x", padx=10)
 
@@ -298,9 +291,8 @@ search_entry = tk.Entry(
 
 search_entry.pack(side="left", padx=10)
 
-# ---------------------------------------------------
+
 # Treeview
-# ---------------------------------------------------
 tree_frame = tk.Frame(root)
 tree_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
@@ -334,9 +326,8 @@ tree.pack(fill="both", expand=True)
 # Double-click a row to load it into the form
 tree.bind("<Double-1>", on_select)
 
-# ---------------------------------------------------
+
 # Right-click menu (optional but nice)
-# ---------------------------------------------------
 menu = tk.Menu(root, tearoff=0)
 menu.add_command(label="Delete", command=delete_media)
 menu.add_command(label="Clear Form", command=clear_fields)
@@ -355,9 +346,8 @@ def show_menu(event):
 
 tree.bind("<Button-3>", show_menu)
 
-# ---------------------------------------------------
+
 # Keyboard shortcuts
-# ---------------------------------------------------
 root.bind("<Delete>", lambda event: delete_media())
 root.bind("<Escape>", lambda event: clear_fields())
 
@@ -371,9 +361,8 @@ def save_with_enter(event):
 
 root.bind("<Return>", save_with_enter)
 
-# ---------------------------------------------------
+
 # Status Bar
-# ---------------------------------------------------
 status = tk.StringVar()
 
 
@@ -392,9 +381,8 @@ status_bar = tk.Label(
 
 status_bar.pack(fill="x", side="bottom")
 
-# ---------------------------------------------------
+
 # Override load_tree so it updates the status bar too
-# ---------------------------------------------------
 _old_load_tree = load_tree
 
 
@@ -403,13 +391,11 @@ def load_tree(records=None):
     update_status()
 
 
-# ---------------------------------------------------
+
 # Initial Load
-# ---------------------------------------------------
 load_tree()
 clear_fields()
 
-# ---------------------------------------------------
+
 # Run Application
-# ---------------------------------------------------
 root.mainloop()
